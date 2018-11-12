@@ -1,0 +1,19 @@
+"*":
+  autosave:
+    enabled: true
+  core:
+    closeDeletedFileTabs: true
+    projectHome: "/Users/raphael.horber/Sites"
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "monokai"
+    ]
+  editor:
+    showInvisibles: true
+  "exception-reporting":
+    userId: "edd945b9-24a7-4d0a-962d-e69c92edc9f6"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
