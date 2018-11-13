@@ -5,6 +5,7 @@ defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Disable the crash reporter
 defaults write com.apple.CrashReporter DialogType -string "none"
@@ -43,21 +44,22 @@ defaults write com.apple.finder ShowPathbar -boolean true
 # Finder: allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
+# Finder: Add 'Quit' option
+defaults write com.apple.finder QuitMenuItem -bool true
+
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
-# Use list view in all Finder windows by default
+# Use column view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `Nlsv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
 # Speed up Mission Control animations
-efaults write com.apple.dock expose-animation-duration -float 0.1
-
+defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Bottom right screen corner → Start screen saver
 defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
-
 
 # Disable spaces switching animation
 defaults write com.apple.dock workspaces-swoosh-animation-off -bool true
@@ -65,4 +67,6 @@ defaults write com.apple.dock workspaces-swoosh-animation-off -bool true
 # Disable full screen animation
 defaults write -g NSWindowResizeTime -float 0.001
 
+# Disable automatically rearrange Spaces based on recent use
+defaults write com.apple.dock mru-spaces -bool false
 
