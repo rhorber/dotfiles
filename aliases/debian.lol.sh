@@ -2,7 +2,7 @@
 # Source: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/lol/lol.plugin.zsh
 
 alias wtf='dmesg'
-alias onoz='cat /var/log/apache2/error.log'
+alias onoz='tail -n25 /var/log/apache2/error.log'
 alias rtfm='man'
 
 alias :3='echo'
