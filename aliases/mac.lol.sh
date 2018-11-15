@@ -34,7 +34,7 @@ alias nomz='ps aux'
 alias nomnom='killall'
 
 alias byes='exit'
-alias cya='sudo eboot'
+alias cya='sudo reboot'
 alias kthxbai='sudo halt'
 
 # alias pwned='ssh'
