@@ -26,6 +26,7 @@ tmp=`grep -nE "^plugins=\($" $bak | cut -d: -f1`
 sed -ne "$foo,$tmp p" $bak >> $cfg
 
 # set desired plugins
+echo "  colored-man-pages" >> $cfg
 echo "  git" >> $cfg
 
 # add remainder
