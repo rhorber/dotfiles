@@ -70,3 +70,6 @@ defaults write -g NSWindowResizeTime -float 0.001
 # Disable automatically rearrange Spaces based on recent use
 defaults write com.apple.dock mru-spaces -bool false
 
+# Don't show recently used applications in the Dock
+defaults write com.Apple.Dock show-recents -bool false
+
