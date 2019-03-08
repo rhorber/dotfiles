@@ -28,8 +28,19 @@ sed -ne "$foo,$tmp p" $bak >> $cfg
 # set desired plugins
 echo "  colored-man-pages" >> $cfg
 echo "  git" >> $cfg
+echo "  zsh-syntax-highlighting" >> $cfg
 
 # add remainder
 tmp=`grep -nE "^)$" $bak | cut -d: -f1`
 sed -ne "$tmp,$ p" $bak >> $cfg
+
+
+# ** Syntax Highlighting Plugin **
+cd ~/.oh-my-zsh/custom/plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+
+# ** Current Agnoster Theme **
+cd ~/.oh-my-zsh/custom/themes
+git clone https://github.com/agnoster/agnoster-zsh-theme.git
 
