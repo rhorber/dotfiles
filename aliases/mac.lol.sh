@@ -1,8 +1,8 @@
 # LOL!!1
 # Source: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/lol/lol.plugin.zsh
 
-alias wtf='cat /Applications/MAMP/logs/php_error.log'
-alias onoz='tail -n25 /Applications/MAMP/logs/php_error.log'
+alias wtf='tail -f /usr/local/var/log/php_error.log'
+alias onoz='tail -n25 /usr/local/var/log/php_error.log'
 alias rtfm='man'
 
 alias :3='echo'
