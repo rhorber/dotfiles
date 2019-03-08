@@ -73,3 +73,6 @@ defaults write com.apple.dock mru-spaces -bool false
 # Don't show recently used applications in the Dock
 defaults write com.Apple.Dock show-recents -bool false
 
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
