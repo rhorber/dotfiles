@@ -1,2 +1,9 @@
 # dotfiles
 My Dotfiles, for personal linux vm and macOS at work.
+
+
+# Resources
+The following resources served as examples and inspiration:
+- https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789
+- https://github.com/webpro/dotfiles/blob/master/macos/defaults.sh
+
