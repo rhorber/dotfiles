@@ -18,6 +18,7 @@ sed -ne "1,$foo p" $bak >> $cfg
 
 # add new theme
 echo "#ZSH_THEME=\"robbyrussell\"" >> $cfg
+echo "PRIMARY_FG=white" >> $cfg
 echo "ZSH_THEME=\"agnoster\"" >> $cfg
 
 # add until plugins
@@ -43,4 +44,5 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 # ** Current Agnoster Theme **
 cd ~/.oh-my-zsh/custom/themes
 git clone https://github.com/agnoster/agnoster-zsh-theme.git
-
+mv agnoster-zsh-theme/agnoster.zsh-theme .
+rm -rf agnoster-zsh-theme
