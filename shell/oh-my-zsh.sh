@@ -46,3 +46,20 @@ cd ~/.oh-my-zsh/custom/themes
 git clone https://github.com/agnoster/agnoster-zsh-theme.git
 mv agnoster-zsh-theme/agnoster.zsh-theme .
 rm -rf agnoster-zsh-theme
+
+
+# ** Customize Theme **
+agnoster="$HOME/.oh-my-zsh/custom/agnoster-customization.zsh"
+echo "# Customize agnoster: Remove context and display time" > $agnoster
+echo "custom_date () {" >> $agnoster
+echo "  prompt_segment \$PRIMARY_FG 'default' \" \`date +'%H:%M:%S'\` \"" >> $agnoster
+echo "}" >> $agnoster
+echo "" >> $agnoster
+echo "AGNOSTER_PROMPT_SEGMENTS[2]=custom_date" >> $agnoster
+echo "AGNOSTER_PROMPT_SEGMENTS[3]=" >> $agnoster
+echo "" >> $agnoster
+
+echo "" >> $cfg
+echo "# Load agnoster customization" >> $cfg
+echo "source ${agnoster}" >> $cfg
+echo "" >> $cfg
