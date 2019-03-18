@@ -22,6 +22,13 @@ xcode-select --install
 # *** Aliases ***
 ./aliases/mac.sh
 
+# *** vim ***
+cp ./vim/common.vim ~/.vimrc
+echo "" >> ~/.vimrc
+echo "" >> ~/.vimrc
+cat ./vim/mac.vim >> ~/.vimrc
+echo "" >> ~/.vimrc
+
 # *** Git ***
 ./git/gitconfig.sh
 
