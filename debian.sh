@@ -21,6 +21,3 @@ echo "" >> ~/.vimrc
 cat ./vim/debian.vim >> ~/.vimrc
 echo "" >> ~/.vimrc
 
-
-# *** Git ***
-./git/gitconfig.sh
