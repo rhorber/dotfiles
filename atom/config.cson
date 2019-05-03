@@ -3,7 +3,7 @@
     enabled: true
   core:
     closeDeletedFileTabs: true
-    projectHome: "/Users/raphael.horber/Sites"
+    projectHome: "/Users/raphael/Code"
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"

@@ -40,9 +40,9 @@ source ./git/gitconfig.sh
 ./mac/brew.sh
 
 # *** CakePHP Plugin ***
-./mac/cake.sh
+#./mac/cake.sh
 
 
 # *** Atom ***
-./atom/atom.sh
+#./atom/atom.sh
 
