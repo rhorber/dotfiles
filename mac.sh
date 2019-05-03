@@ -30,7 +30,7 @@ cat ./vim/mac.vim >> ~/.vimrc
 echo "" >> ~/.vimrc
 
 # *** Git ***
-./git/gitconfig.sh
+source ./git/gitconfig.sh
 
 
 # *** macOS Settings ***

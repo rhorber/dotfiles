@@ -2,7 +2,9 @@
 
 
 # *** Install ***
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ -z `command -v brew` ]; then
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 brew install caskroom/cask/brew-cask
 
 sudo mkdir /usr/local/include

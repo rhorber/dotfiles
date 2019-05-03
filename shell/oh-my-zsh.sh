@@ -24,16 +24,34 @@ echo "ZSH_THEME=\"agnoster\"" >> $cfg
 # add until plugins
 let 'foo = tmp + 1'
 tmp=`grep -nE "^plugins=\($" $bak | cut -d: -f1`
-sed -ne "$foo,$tmp p" $bak >> $cfg
 
-# set desired plugins
-echo "  colored-man-pages" >> $cfg
-echo "  git" >> $cfg
-echo "  zsh-syntax-highlighting" >> $cfg
+if [ "${tmp}" != "" ]; then
+    sed -ne "$foo,$tmp p" $bak >> $cfg
 
-# add remainder
-tmp=`grep -nE "^)$" $bak | cut -d: -f1`
-sed -ne "$tmp,$ p" $bak >> $cfg
+    # set desired plugins
+    echo "  colored-man-pages" >> $cfg
+    echo "  git" >> $cfg
+    echo "  zsh-syntax-highlighting" >> $cfg
+
+    # add remainder
+    tmp=`grep -nE "^)$" $bak | cut -d: -f1`
+    sed -ne "$tmp,$ p" $bak >> $cfg
+else
+    tmp=`grep -nE "^plugins=\(" $bak | cut -d: -f1`
+    let 'tmp = tmp - 1'
+    sed -ne "$foo,$tmp p" $bak >> $cfg
+
+    # set desired plugins
+    echo "plugins=(" >> $cfg
+    echo "  colored-man-pages" >> $cfg
+    echo "  git" >> $cfg
+    echo "  zsh-syntax-highlighting" >> $cfg
+    echo ")" >> $cfg
+
+    # add remainder
+    let 'tmp = tmp + 2'
+    sed -ne "$tmp,$ p" $bak >> $cfg
+fi
 
 
 # ** Syntax Highlighting Plugin **
