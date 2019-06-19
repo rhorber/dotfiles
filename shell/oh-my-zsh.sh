@@ -70,11 +70,12 @@ rm -rf agnoster-zsh-theme
 agnoster="$HOME/.oh-my-zsh/custom/agnoster-customization.zsh"
 echo "# Customize agnoster: Remove context and display time" > $agnoster
 echo "custom_date () {" >> $agnoster
-echo "  prompt_segment \$PRIMARY_FG 'default' \" \`date +'%H:%M:%S'\` \"" >> $agnoster
+echo "  prompt_segment 'black' \$PRIMARY_FG \" \`date +'%H:%M:%S'\` \"" >> $agnoster
 echo "}" >> $agnoster
 echo "" >> $agnoster
 echo "AGNOSTER_PROMPT_SEGMENTS[2]=custom_date" >> $agnoster
-echo "AGNOSTER_PROMPT_SEGMENTS[3]=" >> $agnoster
+echo "AGNOSTER_PROMPT_SEGMENTS[3]=prompt_context" >> $agnoster
+echo "DEFAULT_USER=raphael" >> $agnoster
 echo "" >> $agnoster
 
 echo "" >> $cfg
