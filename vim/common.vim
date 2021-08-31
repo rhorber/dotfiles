@@ -1,4 +1,4 @@
-" Common / platform independent settings
+" https://vimhelp.org/options.txt.html
 set nocompatible
 syntax on
 
@@ -6,16 +6,15 @@ set autoread
 set background=dark
 set backspace=indent,eol,start
 set cursorline
+set expandtab
 set hlsearch
 set ignorecase
-set iminsert=0
-set imsearch=0
 set incsearch
-set nomodeline
-set modelines=0
+set modeline
 set mouse=n
 set number
 set ruler
+set scrolloff=4
 set shiftwidth=4
 set showcmd
 set showmatch
