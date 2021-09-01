@@ -10,6 +10,5 @@ cp ./shell/debian.inputrc ~/.inputrc
 
 
 # *** vim ***
-cp ./vim/common.vim ~/.vimrc
-echo "" >> ~/.vimrc
+cp ./vim/vimrc.vim ~/.vimrc
 
