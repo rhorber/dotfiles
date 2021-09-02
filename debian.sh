@@ -6,7 +6,7 @@ cp ./shell/debian.inputrc ~/.inputrc
 
 
 # *** Aliases ***
-./aliases/debian.sh
+./shell/debian.aliases.sh
 
 
 # *** vim ***
