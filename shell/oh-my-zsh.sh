@@ -2,7 +2,13 @@
 
 
 # ** Install **
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if [ -d "$HOME/.oh-my-zsh/" ]; then
+    cd ~/.oh-my-zsh/
+    git pull
+    cd -
+else
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
 
 
 # ** Config **
@@ -11,18 +17,27 @@ bak="$cfg.bak"
 mv $cfg $bak
 echo "Configuring the file '$cfg'..."
 
-# add until theme
-tmp=`grep -n "^ZSH_THEME=\"" $bak | cut -d: -f1`
-let 'foo = tmp - 1'
-sed -ne "1,$foo p" $bak >> $cfg
+# change theme only if it is outdated
+tmp=$(grep -nE "^ZSH_THEME='powerlevel10k/powerlevel10k'" $bak)
+if [ -z "${tmp}" ]; then
+    # add until theme
+    tmp=`grep -n "^ZSH_THEME=\"" $bak | cut -d: -f1`
+    let 'foo = tmp - 1'
+    sed -ne "1,$foo p" $bak >> $cfg
 
-# add new theme
-echo "#ZSH_THEME=\"robbyrussell\"" >> $cfg
-echo "POWERLEVEL9K_MODE='nerdfont-complete'" >> $cfg
-echo "ZSH_THEME='powerlevel10k/powerlevel10k'" >> $cfg
+    # add new theme
+    echo "#ZSH_THEME=\"robbyrussell\"" >> $cfg
+    echo "POWERLEVEL9K_MODE='nerdfont-complete'" >> $cfg
+    echo "ZSH_THEME='powerlevel10k/powerlevel10k'" >> $cfg
+
+    # add from "after theme"
+    let 'foo = tmp + 1'
+else
+    # add from the beginning
+    foo=1
+fi
 
 # add until plugins
-let 'foo = tmp + 1'
 tmp=`grep -nE "^plugins=\($" $bak | cut -d: -f1`
 
 if [ "${tmp}" != "" ]; then
@@ -43,7 +58,7 @@ else
     let 'tmp = tmp + 2'
 fi
 
-# set desired plugins
+# set desired plugins (replacing existing list)
 echo "  colored-man-pages" >> $cfg
 echo "  docker" >> $cfg
 echo "  docker-compose" >> $cfg
@@ -60,18 +75,52 @@ sed -ne "$tmp,$ p" $bak >> $cfg
 # enable waiting dots
 sed -i 's/# COMPLETION_WAITING_DOTS="true"/COMPLETION_WAITING_DOTS="true"/' $cfg
 
+# display changes in plugins
+echo "The following changes to oh-my-zsh plugins were made (> added, < removed):"
+fromPattern="^plugins="
+toPattern="^(plugins=\(.*)?\)"
+diff <(sed -n "$(grep -nE $fromPattern $bak | cut -d: -f1),$(grep -nP $toPattern $bak | cut -d: -f1)p" $bak) \
+    <(sed -n "$(grep -nE $fromPattern $cfg | cut -d: -f1),$(grep -nP $toPattern $cfg | cut -d: -f1)p" $cfg) \
+    --color=always
+
+if [ $? -eq 0 ]; then
+    echo "No changes"
+fi
+unset fromPattern toPattern
+
 
 # ** Powerlevel10k Theme **
-cd ~/.oh-my-zsh/custom/themes
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k/" ]; then
+    cd ~/.oh-my-zsh/custom/themes/powerlevel10k/
+    git pull
+    cd -
+else
+    cd ~/.oh-my-zsh/custom/themes/
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+    cd -
+fi
 
 # ** Auto-Suggestions Plugin **
-cd ~/.oh-my-zsh/custom/plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions.git
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/" ]; then
+    cd ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/
+    git pull
+    cd -
+else
+    cd ~/.oh-my-zsh/custom/plugins/
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git
+    cd -
+fi
 
 # ** Syntax Highlighting Plugin **
-cd ~/.oh-my-zsh/custom/plugins
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/" ]; then
+    cd ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/
+    git pull
+    cd -
+else
+    cd ~/.oh-my-zsh/custom/plugins/
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+    cd -
+fi
 
 
 # ** Customize Theme **
