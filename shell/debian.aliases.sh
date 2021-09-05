@@ -2,7 +2,11 @@
 
 # Working directory
 if [ "${PWD##*/}" != "aliases" ]; then
-  cd ../aliases || exit
+  if [ "${PWD##*/}" == "shell" ]; then
+    cd ../aliases || exit
+  else
+    cd aliases || exit
+  fi
 fi
 
 # Copy aliases
