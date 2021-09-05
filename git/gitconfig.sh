@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -z ${gitUserEmail+x} ]; then
   read -p "Enter Git user's email address (leave empty for skipping .gitconfig): " gitUserEmail
