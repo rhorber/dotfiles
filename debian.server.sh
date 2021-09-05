@@ -5,6 +5,10 @@
 cp ./shell/debian.inputrc ~/.inputrc
 
 
+# *** Software ***
+./bin/packages.sh
+
+
 # *** Aliases ***
 ./shell/debian.aliases.sh
 
