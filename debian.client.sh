@@ -5,6 +5,13 @@
 ./debian.server.sh
 
 
+# *** Vim (additional) ***
+{
+  echo ""
+  cat ./vim/sudo.vim
+} >> ~/.vimrc
+
+
 # *** Oh-My-Zsh ***
 ./shell/oh-my-zsh.sh
 
