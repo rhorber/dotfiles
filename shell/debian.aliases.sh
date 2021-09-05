@@ -12,16 +12,6 @@ if [ ! -d "$HOME/.aliases/" ]; then
 fi
 cp ./*.sh "$HOME/.aliases/"
 
-# Change owner
-chown "$USER": "$HOME"/.aliases/*
-
-# Copy binaries
-# TODO: Needs sudo...
-cp ../bin/cp_v8.32.amd64.bin /usr/local/bin/cp
-cp ../bin/mv_v8.32.amd64.bin /usr/local/bin/mv
-chown "$USER": /usr/local/bin/{cp,mv}
-chmod 0755 /usr/local/bin/{cp,mv}
-
 # Bash
 if command -v bash &> /dev/null; then
     cp ./*.bash "$HOME/.aliases/"
@@ -52,4 +42,18 @@ if command -v zsh &> /dev/null; then
             echo ""
         } >> "$HOME/.zshrc"
     fi
+fi
+
+# Change owner
+chown "$USER": "$HOME"/.aliases/*
+
+# Copy binaries
+# TODO: Needs sudo...
+if [ "$(id -u)" -eq 0 ]; then
+    cp ../bin/cp_v8.32.amd64.bin /usr/local/bin/cp
+    cp ../bin/mv_v8.32.amd64.bin /usr/local/bin/mv
+    chown "$USER": /usr/local/bin/{cp,mv}
+    chmod 0755 /usr/local/bin/{cp,mv}
+else
+    rm ~/.aliases/advanced-coreutils.sh
 fi
