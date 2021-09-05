@@ -8,8 +8,11 @@ if [ "${gitUserEmail}" != "" ]; then
   echo "# This is Git's per-user configuration file." > ~/.gitconfig
   echo "" >> ~/.gitconfig
   echo "[user]" >> ~/.gitconfig
-  echo "name = Raphael Horber" >> ~/.gitconfig
-  echo "email = ${gitUserEmail}" >> ~/.gitconfig
+  echo "  name = Raphael Horber" >> ~/.gitconfig
+  echo "  email = ${gitUserEmail}" >> ~/.gitconfig
+  echo "" >> ~/.gitconfig
+  echo "[core]" >> ~/.gitconfig
+  echo "  editor = vim" >> ~/.gitconfig
   echo "" >> ~/.gitconfig
 fi
 
