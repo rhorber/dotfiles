@@ -12,23 +12,6 @@ if [ ! -d "$HOME/.aliases/" ]; then
 fi
 cp ./*.sh "$HOME/.aliases/"
 
-# Change owner
-chown "$USER": "$HOME"/.aliases/*
-
-# Copy binaries
-# TODO: Needs sudo...
-if [ -f "../bin/cp.bin" ]; then
-    cp ../bin/cp.bin /usr/local/bin/cp
-    chown "$USER": /usr/local/bin/cp
-    chmod 0755 /usr/local/bin/cp
-fi
-
-if [ -f "../bin/mv.bin" ]; then
-    cp ../bin/mv.bin /usr/local/bin/mv
-    chown "$USER": /usr/local/bin/mv
-    chmod 0755 /usr/local/bin/mv
-fi
-
 # Bash
 if command -v bash &> /dev/null; then
     cp ./*.bash "$HOME/.aliases/"
@@ -59,4 +42,21 @@ if command -v zsh &> /dev/null; then
             echo ""
         } >> "$HOME/.zshrc"
     fi
+fi
+
+# Change owner
+chown "$USER": "$HOME"/.aliases/*
+
+# Copy binaries
+# TODO: Needs sudo...
+if [ -f "../bin/cp.bin" ]; then
+    cp ../bin/cp.bin /usr/local/bin/cp
+    chown "$USER": /usr/local/bin/cp
+    chmod 0755 /usr/local/bin/cp
+fi
+
+if [ -f "../bin/mv.bin" ]; then
+    cp ../bin/mv.bin /usr/local/bin/mv
+    chown "$USER": /usr/local/bin/mv
+    chmod 0755 /usr/local/bin/mv
 fi
