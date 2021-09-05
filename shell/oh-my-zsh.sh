@@ -3,12 +3,12 @@
 
 # ** Install **
 if [ -d "$HOME/.oh-my-zsh/" ]; then
-    (
-        cd ~/.oh-my-zsh/ || exit
-        git pull
-    )
+  (
+    cd ~/.oh-my-zsh/ || exit
+    git pull
+  )
 else
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 
@@ -21,58 +21,58 @@ echo "Configuring the file '$cfg'..."
 # change theme only if it is outdated
 tmp=$(grep -nE "^ZSH_THEME=\"powerlevel10k/powerlevel10k\"" "$bak")
 if [ -z "$tmp" ]; then
-    # add until theme
-    tmp=$(grep -n "^ZSH_THEME=\"" "$bak" | cut -d: -f1)
-    foo=$(( tmp - 1 ))
+  # add until theme
+  tmp=$(grep -n "^ZSH_THEME=\"" "$bak" | cut -d: -f1)
+  foo=$((tmp - 1))
 
-    {
-        sed -ne "1,$foo p" "$bak"
+  {
+    sed -ne "1,$foo p" "$bak"
 
-        # add new theme
-        echo "#ZSH_THEME=\"robbyrussell\""
-        echo "POWERLEVEL9K_MODE=\"nerdfont-complete\""
-        echo "ZSH_THEME=\"powerlevel10k/powerlevel10k\""
-    } >> "$cfg"
+    # add new theme
+    echo "#ZSH_THEME=\"robbyrussell\""
+    echo "POWERLEVEL9K_MODE=\"nerdfont-complete\""
+    echo "ZSH_THEME=\"powerlevel10k/powerlevel10k\""
+  } >> "$cfg"
 
-    # add from "after theme"
-    foo=$(( tmp + 1 ))
+  # add from "after theme"
+  foo=$((tmp + 1))
 else
-    # add from the beginning
-    foo=1
+  # add from the beginning
+  foo=1
 fi
 
 # add until plugins
 tmp=$(grep -nE "^plugins=\($" "$bak" | cut -d: -f1)
 
 if [ "${tmp}" != "" ]; then
-    sed -ne "$foo,$tmp p" "$bak" >> "$cfg"
+  sed -ne "$foo,$tmp p" "$bak" >> "$cfg"
 
-    # calculate remainder (after closing parenthesis)
-    tmp=$(grep -nE "^)$" "$bak" | cut -d: -f1)
-    tmp=$(( tmp + 1 ))
+  # calculate remainder (after closing parenthesis)
+  tmp=$(grep -nE "^)$" "$bak" | cut -d: -f1)
+  tmp=$((tmp + 1))
 else
-    tmp=$(grep -nE "^plugins=\(" "$bak" | cut -d: -f1)
-    tmp=$(( tmp - 1 ))
-    sed -ne "$foo,$tmp p" "$bak" >> "$cfg"
+  tmp=$(grep -nE "^plugins=\(" "$bak" | cut -d: -f1)
+  tmp=$((tmp - 1))
+  sed -ne "$foo,$tmp p" "$bak" >> "$cfg"
 
-    # set desired plugins
-    echo "plugins=(" >> "$cfg"
+  # set desired plugins
+  echo "plugins=(" >> "$cfg"
 
-    # calculate remainder
-    tmp=$(( tmp + 2 ))
+  # calculate remainder
+  tmp=$((tmp + 2))
 fi
 
 # set desired plugins (replacing existing list)
 {
-    echo "  colored-man-pages"
-    echo "  docker"
-    echo "  docker-compose"
-    echo "  git"
-    echo "  npm"
-    echo "  yarn"
-    echo "  zsh-autosuggestions"
-    echo "  zsh-syntax-highlighting"
-    echo ")"
+  echo "  colored-man-pages"
+  echo "  docker"
+  echo "  docker-compose"
+  echo "  git"
+  echo "  npm"
+  echo "  yarn"
+  echo "  zsh-autosuggestions"
+  echo "  zsh-syntax-highlighting"
+  echo ")"
 } >> "$cfg"
 
 # add remainder
@@ -85,7 +85,8 @@ sed -i 's/# COMPLETION_WAITING_DOTS="true"/COMPLETION_WAITING_DOTS="true"/' "$cf
 echo "The following changes to oh-my-zsh plugins were made (> added, < removed):"
 fromPattern="^plugins="
 toPattern="^(plugins=\(.*)?\)"
-diff=$(diff --color=always \
+diff=$(
+  diff --color=always \
     <(sed -n "$(grep -nE "$fromPattern" "$bak" | cut -d: -f1),$(grep -nP "$toPattern" "$bak" | cut -d: -f1)p" "$bak") \
     <(sed -n "$(grep -nE "$fromPattern" "$cfg" | cut -d: -f1),$(grep -nP "$toPattern" "$cfg" | cut -d: -f1)p" "$cfg")
 )
@@ -95,41 +96,41 @@ unset fromPattern toPattern diff
 
 # ** Powerlevel10k Theme **
 if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k/" ]; then
-    (
-        cd ~/.oh-my-zsh/custom/themes/powerlevel10k/ || exit
-        git pull
-    )
+  (
+    cd ~/.oh-my-zsh/custom/themes/powerlevel10k/ || exit
+    git pull
+  )
 else
-    (
-        cd ~/.oh-my-zsh/custom/themes/ || exit
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
-    )
+  (
+    cd ~/.oh-my-zsh/custom/themes/ || exit
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+  )
 fi
 
 # ** Auto-Suggestions Plugin **
 if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/" ]; then
-    (
-        cd ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/ || exit
-        git pull
-    )
+  (
+    cd ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/ || exit
+    git pull
+  )
 else
-    (
-        cd ~/.oh-my-zsh/custom/plugins/ || exit
-        git clone https://github.com/zsh-users/zsh-autosuggestions.git
-    )
+  (
+    cd ~/.oh-my-zsh/custom/plugins/ || exit
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git
+  )
 fi
 
 # ** Syntax Highlighting Plugin **
 if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/" ]; then
-    (
-        cd ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/ || exit
-        git pull
-    )
+  (
+    cd ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/ || exit
+    git pull
+  )
 else
-    (
-        cd ~/.oh-my-zsh/custom/plugins/ || exit
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-    )
+  (
+    cd ~/.oh-my-zsh/custom/plugins/ || exit
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+  )
 fi
 
 
