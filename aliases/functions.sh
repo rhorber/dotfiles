@@ -1,5 +1,5 @@
 # Grep recursively
 function grepr() {
-	grep -rni --color=auto ${*} *
+  grep -rni --color=auto ${*} *
 }
 
