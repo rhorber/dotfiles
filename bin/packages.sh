@@ -10,6 +10,6 @@ apt-get -y install apt-transport-https bash-completion ca-certificates distro-in
   iso-codes lsb-release man-db netcat-traditional openssl traceroute wget
 
 # Our tools
-apt-get -y install curl htop iftop pv screenfetch ssh tree vim
+apt-get -y install bat curl htop iftop pv screenfetch ssh tree vim
 
 
