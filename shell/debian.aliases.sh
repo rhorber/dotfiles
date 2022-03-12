@@ -10,9 +10,10 @@ if [ "${PWD##*/}" != "aliases" ]; then
 fi
 
 # Copy aliases
-rm "$HOME"/.aliases/*
 if [ ! -d "$HOME/.aliases/" ]; then
   mkdir "$HOME/.aliases"
+else
+  rm "$HOME"/.aliases/*
 fi
 cp ./*.sh "$HOME/.aliases/"
 
