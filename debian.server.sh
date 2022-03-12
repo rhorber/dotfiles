@@ -16,3 +16,8 @@ cp ./shell/debian.inputrc ~/.inputrc
 # *** vim ***
 cp ./vim/vimrc.vim ~/.vimrc
 
+
+# *** htop ***
+mkdir -p ~/.config/htop
+cp ./config/htoprc ~/.config/htop/htoprc
+
