@@ -2,6 +2,19 @@
 
 
 # ** Install **
+if ! command -v git &> /dev/null; then
+  if [ "$(whoami)" = "root" ]; then
+    SUDO=""
+  elif command -v sudo &> /dev/null; then
+    SUDO="sudo"
+  else
+    echo "$(printf '\033[33m')Git is not installed.$(printf '\033[0m') Please install git first."
+    exit 1
+  fi
+
+  ${SUDO} apt-get -y install git
+fi
+
 if [ -d "$HOME/.oh-my-zsh/" ]; then
   (
     cd ~/.oh-my-zsh/ || exit
