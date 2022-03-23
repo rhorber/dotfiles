@@ -54,14 +54,18 @@ chown "$USER": "$HOME"/.aliases/*
 
 # Copy binaries
 # TODO: Needs sudo...
-if [ -f "../bin/cp.bin" ]; then
-  cp ../bin/cp.bin /usr/local/bin/cp
-  chown "$USER": /usr/local/bin/cp
-  chmod 0755 /usr/local/bin/cp
-fi
+if [ "$(id -u)" -eq 0 ]; then
+  if [ -f "../bin/cp.bin" ]; then
+    cp ../bin/cp.bin /usr/local/bin/cp-progress
+    chown "$USER": /usr/local/bin/cp-progress
+    chmod 0755 /usr/local/bin/cp-progress
+  fi
 
-if [ -f "../bin/mv.bin" ]; then
-  cp ../bin/mv.bin /usr/local/bin/mv
-  chown "$USER": /usr/local/bin/mv
-  chmod 0755 /usr/local/bin/mv
+  if [ -f "../bin/mv.bin" ]; then
+    cp ../bin/mv.bin /usr/local/bin/mv-progress
+    chown "$USER": /usr/local/bin/mv-progress
+    chmod 0755 /usr/local/bin/mv-progress
+  fi
+else
+  rm ~/.aliases/advanced-coreutils.sh
 fi

@@ -1,8 +1,8 @@
-if [ -x "/usr/local/bin/cp" ]; then
-  alias cp='/usr/local/bin/cp -gR'
+if [ -x "/usr/local/bin/cp-progress" ]; then
+  alias cp='/usr/local/bin/cp-progress -gR'
 fi
 
-if [ -x "/usr/local/bin/mv" ]; then
-  alias mv='/usr/local/bin/mv -g'
+if [ -x "/usr/local/bin/mv-progress" ]; then
+  alias mv='/usr/local/bin/mv-progress -g'
 fi
 
