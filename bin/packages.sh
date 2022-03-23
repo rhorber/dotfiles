@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
-if [ "$(id -u)" -ne 0 ]; then
-  echo "Did not install any packages"
+
+if [ "$(whoami)" = "root" ]; then
+  SUDO=""
+elif command -v sudo &> /dev/null; then
+  SUDO="sudo"
+else
+  echo "$(printf '\033[33m')Did not install any packages.$(printf '\033[0m')"
   exit
 fi
 
 # System tools (task "standard system utilities")
-apt-get -y install apt-transport-https bash-completion ca-certificates distro-info-data \
+${SUDO} apt-get -y install apt-transport-https bash-completion ca-certificates distro-info-data \
   iso-codes lsb-release man-db netcat-traditional openssl traceroute wget
 
 # Our tools
-apt-get -y install bat curl htop iftop pv screenfetch ssh tree vim
+${SUDO} apt-get -y install bat curl htop iftop pv screenfetch ssh tree vim
 
 
