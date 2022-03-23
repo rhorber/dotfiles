@@ -20,6 +20,10 @@
 ./shell/oh-my-zsh.sh
 
 
+# *** Aliases ***
+./shell/debian.aliases.sh
+
+
 # *** Git ***
 source ./git/gitconfig.sh
 
