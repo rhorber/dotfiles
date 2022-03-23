@@ -10,6 +10,9 @@ else
   exit
 fi
 
+
+${SUDO} apt-get update
+
 # System tools (task "standard system utilities")
 ${SUDO} apt-get -y install apt-transport-https bash-completion ca-certificates distro-info-data \
   iso-codes lsb-release man-db netcat-traditional openssl traceroute wget
