@@ -12,12 +12,12 @@
 } >> ~/.vimrc
 
 
-# *** Oh-My-Zsh ***
-./shell/oh-my-zsh.sh
-
-
 # *** ZSH ***
 ./shell/zsh.sh
+
+
+# *** Oh-My-Zsh ***
+./shell/oh-my-zsh.sh
 
 
 # *** Git ***
