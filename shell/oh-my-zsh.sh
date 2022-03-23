@@ -150,7 +150,7 @@ fi
 # ** Customize Theme **
 powerlevel10k="$HOME/.oh-my-zsh/custom/powerlevel10k-customization.zsh"
 cat > "$powerlevel10k" << POWERLEVEL10K
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status time dir dir_writable vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon status time dir dir_writable vcs)
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
