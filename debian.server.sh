@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 
+# *** sudo ***
+if [ "$(whoami)" != "root" ] && command -v sudo &> /dev/null; then
+  sudo pwd
+fi
+
+
 # *** inputrc ***
 cp ./shell/debian.inputrc ~/.inputrc
 
